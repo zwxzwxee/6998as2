@@ -20,6 +20,7 @@ echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
 # fi
 
 TARGET_LAMBDA_FUNCTION_CODE_ONE="index-photos.zip"
+cd function/index-photos
 zip -r ${TARGET_LAMBDA_FUNCTION_CODE_ONE} *
 aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_ONE} s3://${S3_BUCKET}/
 
