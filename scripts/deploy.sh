@@ -17,9 +17,9 @@ echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
 #   echo "Target Version: ${TARGET_LAMBDA_FUNCTION_VERSION}"
 # fi
 
-TARGET_LAMBDA_FUNCTION_CODE="Build.zip"
+TARGET_LAMBDA_FUNCTION_CODE="LF1.zip"
 zip -rj ${TARGET_LAMBDA_FUNCTION_CODE} function/*
-aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE} s3://${S3_BUCKET}/master/
+aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE} s3://${S3_BUCKET}/
 
 cat >template.yaml <<EOM
 AWSTemplateFormatVersion: '2010-09-09'
@@ -31,7 +31,7 @@ Resources:
       FunctionName: ${LAMBDA_FUNCTION_NAME}
       Handler: lambda_function.lambda_handler
       Runtime: python3.7
-      CodeUri: s3://${S3_BUCKET}/master/Build.zip
+      CodeUri: s3://${S3_BUCKET}/LF1.zip
       AutoPublishAlias: default
       Timeout: 30
       DeploymentPreference:
