@@ -1,11 +1,6 @@
 echo "S3 Bucket: $S3_BUCKET"
 echo "Lambda Function Name: $LAMBDA_FUNCTION_NAME"
 echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
-# echo "GitHub Branch: $BRANCH"
-#
-# if [ "$BRANCH" == "master" ]; then
-#     BRANCH="prod"
-# fi
 
 # FUNCTION_EXISTS=$(aws lambda wait function-exists --function-name ${LAMBDA_FUNCTION_NAME})
 # EXIT_STATUS=$?
