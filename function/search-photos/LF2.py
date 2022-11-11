@@ -9,16 +9,6 @@ import base64
 
 
 def lambda_handler(event, context):
-    # return {
-    # "statusCode": 200,
-    # "headers": { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    # "body": json.dumps(event['queryStringParameters'])}
-
-    # { "type": "unstructured",
-    #   "unstructured": {
-    #   "text": i['content'],}
-    # }
-
     # lex bot parsig sentences
     chatbot = boto3.client('lexv2-runtime')
     response = chatbot.recognize_text(
@@ -65,4 +55,3 @@ def lambda_handler(event, context):
         "headers": {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
         'body': json.dumps(imgs),
     }
-
