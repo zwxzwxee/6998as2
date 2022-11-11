@@ -28,6 +28,7 @@ TARGET_LAMBDA_FUNCTION_CODE_TWO="search-photos.zip"
 cd ../search-photos
 zip -r ${TARGET_LAMBDA_FUNCTION_CODE_TWO} *
 aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_TWO} s3://${S3_BUCKET}/
+cd ../..
 
 # cat >template.yaml <<EOM
 # AWSTemplateFormatVersion: '2010-09-09'
