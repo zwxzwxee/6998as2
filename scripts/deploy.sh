@@ -19,14 +19,13 @@ echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
 #   echo "Target Version: ${TARGET_LAMBDA_FUNCTION_VERSION}"
 # fi
 
-TARGET_LAMBDA_FUNCTION_CODE_ONE="LF1.zip"
-cd function/index-photos
-zip -FSr ./${TARGET_LAMBDA_FUNCTION_CODE_ONE}
+TARGET_LAMBDA_FUNCTION_CODE_ONE="index-photos.zip"
+zip -r ${TARGET_LAMBDA_FUNCTION_CODE_ONE} *
 aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_ONE} s3://${S3_BUCKET}/
 
-TARGET_LAMBDA_FUNCTION_CODE_TWO="LF2.zip"
+TARGET_LAMBDA_FUNCTION_CODE_TWO="search-photos.zip"
 cd ../search-photos
-zip -FSr ./${TARGET_LAMBDA_FUNCTION_CODE_TWO}
+zip -r ${TARGET_LAMBDA_FUNCTION_CODE_TWO} *
 aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_TWO} s3://${S3_BUCKET}/
 
 # cat >template.yaml <<EOM
