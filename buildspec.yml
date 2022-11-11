@@ -7,6 +7,6 @@ phases:
       # - sam package --template-file template.yaml --s3-bucket ${S3_BUCKET} --output-template-file packaged.yaml
 artifacts:
   files:
-    - "index-photos.zip"
-    - "search-photos.zip"
+    - function/index-photos/index-photos.zip
+    - function/search-photos/search-photos.zip
   discard-paths: yes
