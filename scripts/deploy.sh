@@ -36,7 +36,7 @@ Resources:
       FunctionName: ${LAMBDA_FUNCTION_NAME}
       Handler: lambda_function.lambda_handler
       Runtime: python3.7
-      CodeUri: s3://${S3_BUCKET}/master/${LAMBDA_FUNCTION_NAME}_v${TARGET_LAMBDA_FUNCTION_VERSION}.zip
+      CodeUri: s3://${S3_BUCKET}/master/Build.zip
       AutoPublishAlias: default
       Timeout: 30
       DeploymentPreference:
