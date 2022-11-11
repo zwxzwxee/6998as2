@@ -28,21 +28,21 @@ TARGET_LAMBDA_FUNCTION_CODE_TWO="LF2.zip"
 zip -FSr ${TARGET_LAMBDA_FUNCTION_CODE_TWO} function/LF2/*
 aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_TWO} s3://${S3_BUCKET}/
 
-cat >template.yaml <<EOM
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Resources:
-  LambdaFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: ${LAMBDA_FUNCTION_NAME_ONE}, ${LAMBDA_FUNCTION_NAME_TWO}
-      Handler: lambda_function.lambda_handler
-      Runtime: python3.9
-      CodeUri: s3://${S3_BUCKET}/LF1.zip, s3://${S3_BUCKET}/LF2.zip
-      AutoPublishAlias: default
-      Timeout: 30
-      DeploymentPreference:
-        Enabled: True
-        Type: ${LAMBDA_DEPLOYMENT_PREFERENCE}
-EOM
-cat template.yaml
+# cat >template.yaml <<EOM
+# AWSTemplateFormatVersion: '2010-09-09'
+# Transform: AWS::Serverless-2016-10-31
+# Resources:
+#   LambdaFunction:
+#     Type: AWS::Serverless::Function
+#     Properties:
+#       FunctionName: ${LAMBDA_FUNCTION_NAME_ONE}, ${LAMBDA_FUNCTION_NAME_TWO}
+#       Handler: lambda_function.lambda_handler
+#       Runtime: python3.9
+#       CodeUri: s3://${S3_BUCKET}/LF1.zip, s3://${S3_BUCKET}/LF2.zip
+#       AutoPublishAlias: default
+#       Timeout: 30
+#       DeploymentPreference:
+#         Enabled: True
+#         Type: ${LAMBDA_DEPLOYMENT_PREFERENCE}
+# EOM
+# cat template.yaml
