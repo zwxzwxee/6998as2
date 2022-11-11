@@ -5,6 +5,7 @@ echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
 
 # FUNCTION_EXISTS=$(aws lambda wait function-exists --function-name ${LAMBDA_FUNCTION_NAME})
 # EXIT_STATUS=$?
+
 # if [ $EXIT_STATUS -ne 0 ]; then
 #   echo "The function doesn't exist yet. Creating it..."
 #   TARGET_LAMBDA_FUNCTION_VERSION=1
