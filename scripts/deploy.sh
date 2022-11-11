@@ -1,5 +1,6 @@
 echo "S3 Bucket: $S3_BUCKET"
-echo "Lambda Function Name: $LAMBDA_FUNCTION_NAME"
+echo "Lambda Function One Name: $LAMBDA_FUNCTION_NAME_ONE"
+echo "Lambda Function Two Name: $LAMBDA_FUNCTION_NAME_TWO"
 echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
 
 # FUNCTION_EXISTS=$(aws lambda wait function-exists --function-name ${LAMBDA_FUNCTION_NAME})
@@ -17,9 +18,13 @@ echo "Lambda Deployment Preference: $LAMBDA_DEPLOYMENT_PREFERENCE"
 #   echo "Target Version: ${TARGET_LAMBDA_FUNCTION_VERSION}"
 # fi
 
-TARGET_LAMBDA_FUNCTION_CODE="LF1.zip"
-zip -rj ${TARGET_LAMBDA_FUNCTION_CODE} function/*
-aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE} s3://${S3_BUCKET}/
+TARGET_LAMBDA_FUNCTION_CODE_ONE="LF1.zip"
+zip -rj ${TARGET_LAMBDA_FUNCTION_CODE_ONE} function/LF1/*
+aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_ONE} s3://${S3_BUCKET}/
+
+TARGET_LAMBDA_FUNCTION_CODE_TWO="LF2.zip"
+zip -rj ${TARGET_LAMBDA_FUNCTION_CODE_TWO} function/LF2/*
+aws s3 cp ${TARGET_LAMBDA_FUNCTION_CODE_TWO} s3://${S3_BUCKET}/
 
 cat >template.yaml <<EOM
 AWSTemplateFormatVersion: '2010-09-09'
@@ -28,10 +33,12 @@ Resources:
   LambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: ${LAMBDA_FUNCTION_NAME}
+      FunctionName1: ${LAMBDA_FUNCTION_NAME_ONE}
+      FunctionName2: ${LAMBDA_FUNCTION_NAME_TWO}
       Handler: lambda_function.lambda_handler
-      Runtime: python3.7
-      CodeUri: s3://${S3_BUCKET}/LF1.zip
+      Runtime: python3.9
+      CodeUri1: s3://${S3_BUCKET}/LF1.zip
+      CodeUri2: s3://${S3_BUCKET}/LF2.zip
       AutoPublishAlias: default
       Timeout: 30
       DeploymentPreference:
