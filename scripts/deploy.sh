@@ -33,12 +33,10 @@ Resources:
   LambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName1: ${LAMBDA_FUNCTION_NAME_ONE}
-      FunctionName2: ${LAMBDA_FUNCTION_NAME_TWO}
+      FunctionName: ${LAMBDA_FUNCTION_NAME_ONE}, ${LAMBDA_FUNCTION_NAME_TWO}
       Handler: lambda_function.lambda_handler
       Runtime: python3.9
-      CodeUri1: s3://${S3_BUCKET}/LF1.zip
-      CodeUri2: s3://${S3_BUCKET}/LF2.zip
+      CodeUri: s3://${S3_BUCKET}/LF1.zip, s3://${S3_BUCKET}/LF2.zip
       AutoPublishAlias: default
       Timeout: 30
       DeploymentPreference:
