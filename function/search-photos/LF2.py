@@ -45,6 +45,7 @@ def lambda_handler(event, context):
     s3 = boto3.client('s3')
     bucket = "6998as2b2"
     imgs = []
+    print('abc')
 
     for i in id_list:
         fileObj = s3.get_object(Bucket=bucket, Key=i)
